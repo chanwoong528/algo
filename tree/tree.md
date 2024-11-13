@@ -7,7 +7,6 @@
 
 - binary tree
 - binary search tree
-  --
   - Every parent node has at lost two children
   - left node < parent node < right node
 - ...

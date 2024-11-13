@@ -29,6 +29,7 @@ class BST {
       } else {
         if (!currentNode.right) {
           currentNode.right = newNode;
+
           break;
         }
         currentNode = currentNode.right;
@@ -74,19 +75,48 @@ class BST {
     return list;
   }
 
-  dfs(tar) {
-    let currentNode = this.root;
+  dfs() {
+    let result = [];
+    let stack = [];
+    let curNode = this.root;
+
+    stack.push(curNode)
+    while (stack.length > 0) {
+      const cur = stack.pop();
+      result.unshift(cur.value);
+
+      if (cur.left) stack.push(cur.left);
+      if (cur.right) stack.push(cur.right);
+    }
+
+    // function traverseHelper(node) {
+    //   if (node.left) traverseHelper(node.left);
+    //   if (node.right) traverseHelper(node.right);
+    //   result.push(node.value);
+    // }
+
+    // traverseHelper(this.root);
+
+    return result;
   }
+
 }
 
 const bst = new BST(10);
+bst.insert(5);
 bst.insert(15);
+bst.insert(3);
+bst.insert(7);
+bst.insert(2);
+bst.insert(4);
+bst.insert(6);
+bst.insert(9);
 bst.insert(12);
-// bst.insert(5);
-// bst.insert(13);
-// bst.insert(1);
-// bst.insert(3);
-// bst.insert(4);
+bst.insert(17);
+bst.insert(16);
+bst.insert(19);
 
-console.log(bst.bfs(12));
+// console.log(bst.bfs());
+console.log(bst.dfs());
+
 // console.log(bst.bfs(4));
